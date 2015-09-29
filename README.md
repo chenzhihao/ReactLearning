@@ -1,3 +1,5 @@
-# webpack-react-scaffold
+# React Learning
 
-It's a scaffold for webpack and react project starter.
+It's React learning note.
+
+I will do a simple Todo demo by **pure react** and **react + different flux implements** in different branches.
