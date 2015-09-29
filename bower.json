@@ -1,0 +1,20 @@
+{
+  "name": "webpack-react",
+  "version": "0.0.0",
+  "homepage": "https://github.com/chenzhihao/webpack-react-scaffold",
+  "authors": [
+    "chenzhihao <cabtravis@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "normalize-css": "normalize.css#~3.0.3"
+  }
+}
