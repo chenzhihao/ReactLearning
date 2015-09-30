@@ -12,23 +12,28 @@ export default class TodoApp extends React.Component {
     render() {
         return (
             <div >
-                <input className="new-todo" type="text" onKeyDown={this.addTodoItem.bind(this)}/>
+                <input className="new-todo"
+                       type="text"
+                       onKeyDown={this.addTodoItem.bind(this)}/>
                 {
                     this.state.data.todoItems.map((item, index)=> {
-                        return <TodoItem key={index} item={item} onSelect={
-                            () => {
-                                let data = this.state.data;
-                                data.todoItems[index].checked = !data.todoItems[index].checked ;
-                                this.setState({data: data});
-                            }
-                          } onRemove={
-                                        ()=> {
-                                            let data = this.state.data;
-                                            data.todoItems.splice(index, 1) ;
-                                            this.setState({data: data});
+                        return <TodoItem key={index}
+                                         item={item}
+                                         onSelect={
+                                             () => {
+                                                 let data = this.state.data;
+                                                 data.todoItems[index].checked = !data.todoItems[index].checked ;
+                                                 this.setState({data: data});
+                                             }
+                                         }
+                                         onRemove={
+                                             ()=> {
+                                                 let data = this.state.data;
+                                                 data.todoItems.splice(index, 1) ;
+                                                 this.setState({data: data});
                                             }
-                                     }
-                        />;
+                                         }
+                            />;
 
                     })
                 }
