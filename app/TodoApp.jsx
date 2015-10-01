@@ -43,7 +43,7 @@ export default class TodoApp extends React.Component {
                                          onEditChange={
                                             (e)=> {
                                                  let data = this.state.data;
-                                                 data.todoItems[index].text =  e.target.value;                                                 this.setState(data);
+                                                 data.todoItems[index].text =  e.target.value;
                                                  this.setState(data);
                                             }
                                          }
