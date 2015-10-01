@@ -33,6 +33,30 @@ export default class TodoApp extends React.Component {
                                                  this.setState({data: data});
                                             }
                                          }
+                                         onEditInto={
+                                            (e) => {
+                                                 let data = this.state.data;
+                                                 data.todoItems[index].onEdit = true;
+                                                 this.setState(data);
+                                            }
+                                         }
+                                         onEditChange={
+                                            (e)=> {
+                                                 let data = this.state.data;
+                                                 data.todoItems[index].text =  e.target.value;                                                 this.setState(data);
+                                                 this.setState(data);
+                                            }
+                                         }
+                                         onEditExit={
+                                            (e)=> {
+                                                 let data = this.state.data;
+                                                 data.todoItems[index].onEdit = false;
+                                                 data.todoItems = data.todoItems.filter((item)=> {
+                                                    return item.text.trim() !=='';
+                                                 });
+                                                 this.setState(data);
+                                            }
+                                         }
                             />;
 
                     })

@@ -32,10 +32,37 @@ li {
 }
 
 .todo-item {
+    position: relative;
     font-size: 24px;
     border-bottom: 1px solid #ededed;
-    padding: 10px 0;
+    height: 40px;
+    line-height: 40px;
     input {
         margin: 0 10px
+    }
+    input.edit-mode {
+        display: inline;
+        margin: 0;
+    }
+    input.view-mode {
+        display: none;
+    }
+    span.edit-mode {
+        display: none;
+    }
+    span.view-mode {
+        display: inline;
+    }
+    button {
+        height: 30px;
+        width: 30px;
+        background: white;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        right: 0;
+        font-size: 15px;
+        line-height: 20px;
     }
 }
