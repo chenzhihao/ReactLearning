@@ -26,7 +26,8 @@
     "webpack-dev-server": "^1.11.0"
   },
   "dependencies": {
-    "react": "^0.13.3",
-    "reflux": "^0.2.12"
+    "react": "^0.14.0",
+    "react-dom": "^0.14.0",
+    "reflux": "^0.3.0"
   }
 }

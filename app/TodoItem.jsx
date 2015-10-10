@@ -12,7 +12,7 @@ export default class TodoItem extends React.Component {
         // here is tricky, because this.props === prevPros (same reference)
         // todo try immutablejs later.
         if (this.props.item.onEdit) {
-            let node = React.findDOMNode(this.refs.nameInput);
+            let node = this.refs.nameInput;
             node.focus();
             node.setSelectionRange(node.value.length, node.value.length);
         }
@@ -45,7 +45,11 @@ export default class TodoItem extends React.Component {
                                    TodoActions.editChange(event.target.value, this.props.index);
                                }
                            }
-                           onBlur={this.props.onEditExit}
+                           onBlur={
+                               ()=> {
+                                   TodoActions.exitEdit(this.props.index);
+                               }
+                           }
                            onKeyDown={
                                (event)=> {
                                    if (event.which === this.ESCAPE_KEY || event.which === this.ENTER_KEY) {
