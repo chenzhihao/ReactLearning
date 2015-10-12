@@ -1,4 +1,5 @@
 import React from 'react';
+import TodoActions from './actions.js';
 
 export default class TodoItem extends React.Component {
     constructor(props) {
@@ -23,7 +24,11 @@ export default class TodoItem extends React.Component {
                 <div>
                     <input type="checkbox"
                            checked={this.props.item.checked}
-                           onChange={this.props.onSelect}/>
+                           onChange={
+                               ()=>{
+                                   TodoActions.selectItem(this.props.index);
+                               }
+                           }/>
                     <span className={this.props.item.onEdit? "edit-mode" : "view-mode"}
                           onDoubleClick={
                               ()=> {
@@ -45,7 +50,11 @@ export default class TodoItem extends React.Component {
                            }
                         />
                     <button style={{float:'right'}}
-                            onClick={this.props.onRemove}>X
+                            onClick={
+                                ()=>{
+                                    TodoActions.removeItem(this.props.index)
+                                }
+                            }>X
                     </button>
                 </div>
             </li >

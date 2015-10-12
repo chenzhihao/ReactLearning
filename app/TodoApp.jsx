@@ -35,20 +35,7 @@ export default class TodoApp extends React.Component {
                     this.state.data.todoItems.map((item, index)=> {
                         return <TodoItem key={index}
                                          item={item}
-                                         onSelect={
-                                             () => {
-                                                 let data = this.state.data;
-                                                 data.todoItems[index].checked = !data.todoItems[index].checked ;
-                                                 this.setState({data: data});
-                                             }
-                                         }
-                                         onRemove={
-                                             ()=> {
-                                                 let data = this.state.data;
-                                                 data.todoItems.splice(index, 1) ;
-                                                 this.setState({data: data});
-                                            }
-                                         }
+                                         index={index}
                                          onEditInto={
                                             (e) => {
                                                  let data = this.state.data;
