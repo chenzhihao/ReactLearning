@@ -7,7 +7,6 @@ export default class TodoItem extends React.Component {
         this.ENTER_KEY = 13;
     }
 
-
     componentDidUpdate(prevProps) {
         // here is tricky, because this.props === prevPros (same reference)
         // todo try immutablejs later.

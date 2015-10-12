@@ -1,12 +1,28 @@
 import React from 'react';
 import TodoItem from './TodoItem.jsx';
 import TodoFooter from './TodoFooter.jsx';
+import TodoActions from './actions.js';
+import ListStore from './store.js';
 
 
 export default class TodoApp extends React.Component {
     constructor(props) {
         super(props);
         this.state = {data: {todoItems: []}};
+    }
+
+    componentDidMount() {
+        this.unsubscribe = ListStore.listen(this.onStatusChange.bind(this));
+    }
+
+    onStatusChange (status) {
+        this.setState({
+            data: {todoItems: status}
+        });
+    }
+
+    componentWillUnmount() {
+        this.unsubscribe();
     }
 
     render() {
@@ -71,16 +87,7 @@ export default class TodoApp extends React.Component {
             let input = document.querySelector('.new-todo').value;
             document.querySelector('.new-todo').value = '';
             if (input !== '') {
-                this.setState((state) => {
-                    return {
-                        data: {
-                            todoItems: state.data.todoItems.concat({
-                                checked: false,
-                                text: input
-                            })
-                        }
-                    };
-                });
+                TodoActions.addItem(input);
             }
         }
     }
