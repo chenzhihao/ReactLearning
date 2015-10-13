@@ -38,6 +38,14 @@ export default Reflux.createStore({
         this.trigger(this.list);
     },
 
+    onExitEdit(index) {
+        this.list[index].onEdit = false;
+        this.list = this.list.filter((item)=> {
+            return item.text.trim() !== '';
+        });
+        this.trigger(this.list);
+    },
+
     updateList: function (list) {
         this.list = list;
         this.trigger(list);

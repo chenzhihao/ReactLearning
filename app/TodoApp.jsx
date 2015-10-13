@@ -36,16 +36,6 @@ export default class TodoApp extends React.Component {
                         return <TodoItem key={index}
                                          item={item}
                                          index={index}
-                                         onEditExit={
-                                            (e)=> {
-                                                 let data = this.state.data;
-                                                 data.todoItems[index].onEdit = false;
-                                                 data.todoItems = data.todoItems.filter((item)=> {
-                                                    return item.text.trim() !=='';
-                                                 });
-                                                 this.setState(data);
-                                            }
-                                         }
                             />;
 
                     })

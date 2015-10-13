@@ -49,7 +49,7 @@ export default class TodoItem extends React.Component {
                            onKeyDown={
                                (event)=> {
                                    if (event.which === this.ESCAPE_KEY || event.which === this.ENTER_KEY) {
-                                       this.props.onEditExit();
+                                       TodoActions.exitEdit(this.props.index);
                                    }
                                }
                            }

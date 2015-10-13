@@ -5,5 +5,6 @@ export default Reflux.createActions([
     'selectItem',
     'removeItem',
     'intoEdit',
-    'editChange'
+    'editChange',
+    'exitEdit'
 ]);
