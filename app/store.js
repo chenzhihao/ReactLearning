@@ -18,6 +18,11 @@ export default Reflux.createStore({
         }].concat(this.list));
     },
 
+    onIntoEdit(index) {
+        this.list[index].onEdit = true;
+        this.updateList(this.list);
+    },
+
     onSelectItem(index) {
         this.list[index].checked = !this.list[index].checked;
         this.updateList(this.list);
@@ -26,6 +31,11 @@ export default Reflux.createStore({
     onRemoveItem(index) {
         this.list.splice(index, 1);
         this.updateList(this.list);
+    },
+
+    onEditChange(text, index) {
+        this.list[index].text = text;
+        this.trigger(this.list);
     },
 
     updateList: function (list) {

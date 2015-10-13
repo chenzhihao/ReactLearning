@@ -3,5 +3,7 @@ import Reflux from 'Reflux';
 export default Reflux.createActions([
     'addItem',
     'selectItem',
-    'removeItem'
+    'removeItem',
+    'intoEdit',
+    'editChange'
 ]);

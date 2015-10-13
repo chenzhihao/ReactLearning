@@ -32,14 +32,19 @@ export default class TodoItem extends React.Component {
                     <span className={this.props.item.onEdit? "edit-mode" : "view-mode"}
                           onDoubleClick={
                               ()=> {
-                                this.props.onEditInto();
+                                TodoActions.intoEdit(this.props.index);
                               }
                           }>{this.props.item.text}</span>
                     <input type="text"
                            ref="nameInput"
                            className={this.props.item.onEdit? "edit-mode" : "view-mode"}
                            value={this.props.item.text}
-                           onChange={this.props.onEditChange}
+                           onChange={
+                               (event)=> {
+                                   // event will be reused by react
+                                   TodoActions.editChange(event.target.value, this.props.index);
+                               }
+                           }
                            onBlur={this.props.onEditExit}
                            onKeyDown={
                                (event)=> {

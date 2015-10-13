@@ -36,20 +36,6 @@ export default class TodoApp extends React.Component {
                         return <TodoItem key={index}
                                          item={item}
                                          index={index}
-                                         onEditInto={
-                                            (e) => {
-                                                 let data = this.state.data;
-                                                 data.todoItems[index].onEdit = true;
-                                                 this.setState(data);
-                                            }
-                                         }
-                                         onEditChange={
-                                            (e)=> {
-                                                 let data = this.state.data;
-                                                 data.todoItems[index].text =  e.target.value;
-                                                 this.setState(data);
-                                            }
-                                         }
                                          onEditExit={
                                             (e)=> {
                                                  let data = this.state.data;
