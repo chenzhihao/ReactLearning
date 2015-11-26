@@ -22,7 +22,7 @@ class TodoApp extends React.Component {
                        }}/>
 
                 {
-                    this.props.todoItems.map((item, index)=> {
+                    this.props.todoItems.toJS().map((item, index)=> {
                         return <TodoItem key={index}
                                          item={item}
                                          onSelect={
@@ -53,7 +53,7 @@ class TodoApp extends React.Component {
                         />;
                         })
                     }
-                <TodoFooter todoItems={this.props.todoItems}/>
+                <TodoFooter todoItems={this.props.todoItems.toJS()}/>
             </div>
         );
     }
