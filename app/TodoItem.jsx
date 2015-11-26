@@ -26,11 +26,7 @@ export default class TodoItem extends React.Component {
                            checked={this.props.item.checked}
                            onChange={this.props.onSelect}/>
                     <span className={this.props.item.onEdit? "edit-mode" : "view-mode"}
-                          onDoubleClick={
-                              ()=> {
-                                this.props.onEditInto();
-                              }
-                          }>{this.props.item.text}</span>
+                          onDoubleClick={this.props.onEditInto}>{this.props.item.text}</span>
                     <input type="text"
                            ref="nameInput"
                            className={this.props.item.onEdit? "edit-mode" : "view-mode"}
@@ -44,7 +40,7 @@ export default class TodoItem extends React.Component {
                                    }
                                }
                            }
-                        />
+                    />
                     <button style={{float:'right'}}
                             onClick={this.props.onRemove}>X
                     </button>

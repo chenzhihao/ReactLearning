@@ -1,16 +1,6 @@
 import React from 'react';
 
 export default class TodoFooter extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {data: {todoItems: props.todoItems}};
-    }
-
-    // another way is to use this.props directly, because the constructor will only execute once.
-    componentWillReceiveProps(nextProps, nextState) {
-        this.setState({data: {todoItems: nextProps.todoItems}});
-    }
-
     render() {
         return (
             <footer>
@@ -20,8 +10,8 @@ export default class TodoFooter extends React.Component {
     }
 
     getItemInfoStr() {
-        let leftCount = this.state.data.todoItems.length;
-        this.state.data.todoItems.forEach((todoItem)=> {
+        let leftCount = this.props.todoItems.length;
+        this.props.todoItems.forEach((todoItem)=> {
             if (todoItem.checked) {
                 leftCount--;
             }

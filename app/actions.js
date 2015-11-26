@@ -26,6 +26,6 @@ export function editChange(text, index){
     return {type: EDIT_CHANGE, text, index};
 }
 
-export function exitEdit(index) {
-    return {type: EXIT_EDIT, index};
+export function exitEdit(text, index) {
+    return {type: EXIT_EDIT, text, index};
 }
