@@ -3,6 +3,7 @@ import TodoItem from './TodoItem.jsx';
 import TodoFooter from './TodoFooter.jsx';
 import {connect} from 'react-redux';
 import {addItem, addItemAsync, selectItem,removeItem,intoEdit,editChange,exitEdit} from './actions';
+import ImmutablePropTypes from 'react-immutable-proptypes';
 
 class TodoApp extends React.Component {
     render() {
@@ -23,11 +24,11 @@ class TodoApp extends React.Component {
 
 
                 {
-                    (
-                        ()=>{ if (this.props.isAddingTodo) {
-                                return <span>Adding...</span>;
-                            }
-                        })()
+                    (()=> {
+                        if (this.props.isAddingTodo) {
+                            return <span>Adding...</span>;
+                        }
+                    })()
                 }
 
                 {
@@ -60,13 +61,23 @@ class TodoApp extends React.Component {
                                             }
                                          }
                         />;
-                        })
-                    }
-                <TodoFooter todoItems={this.props.todoItems.toJS()}/>
+                    })
+                }
+                <TodoFooter todoItems={this.props.todoItems}/>
             </div>
         );
     }
 }
+
+TodoApp.propTypes = {
+    todoItems: ImmutablePropTypes.listOf(
+        ImmutablePropTypes.contains({
+            text: React.PropTypes.string.isRequired,
+            checked: React.PropTypes.bool
+        })
+    ),
+    isAddingTodo: React.PropTypes.bool.isRequired
+};
 
 function mapStateToProps(state) {
     return {
