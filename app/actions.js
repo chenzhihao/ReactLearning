@@ -1,3 +1,7 @@
+import Fetch from './libs/fetch';
+
+export const FETCH_ITEM_BEGIN = 'fetchItemBegin';
+export const FETCH_ITEM_DONE = 'fetchItemDone';
 export const ADD_ITEM = 'addItem';
 export const SELECT_ITEM = 'selectItem';
 export const REMOVE_ITEM = 'removeItem';
@@ -8,12 +12,28 @@ export const IS_ADDING = 'isAdding';
 
 export const ADD_ITEM_DONE_ASYNC = 'addItemDoneAsync';
 
+
+export function fetchItemBegin() {
+    return (dispatch) => {
+        dispatch({
+            type: FETCH_ITEM_BEGIN
+        });
+        Fetch.fetch('//localhost:8888/rest/todos').then((res)=> {
+            dispatch(fetchItem(res.data));
+        });
+    };
+}
+
+export function fetchItem(items) {
+    return {type: FETCH_ITEM_DONE, items: items};
+}
+
 export function addItem(text) {
     return {type: ADD_ITEM, text};
 }
 
-export function isAdding(){
-    return {type:IS_ADDING};
+export function isAdding() {
+    return {type: IS_ADDING};
 }
 export function addItemAsync(text) {
     return (dispatch) => {

@@ -1,13 +1,14 @@
 import {combineReducers} from 'redux';
-import {ADD_ITEM, SELECT_ITEM,REMOVE_ITEM,INTO_EDIT,EDIT_CHANGE,IS_ADDING,EXIT_EDIT} from './actions';
+import {FETCH_ITEM_BEGIN, FETCH_ITEM_DONE, ADD_ITEM, SELECT_ITEM,REMOVE_ITEM,INTO_EDIT,EDIT_CHANGE,IS_ADDING,EXIT_EDIT} from './actions';
 import Immutable from 'immutable';
 const {List, fromJS} = Immutable;
 
 const initialState = List([]);
 
 function todoItems(state = initialState, action) {
-    console.log(action);
     switch (action.type) {
+        case FETCH_ITEM_DONE:
+            return state.clear().concat(fromJS(action.items));
         case ADD_ITEM:
             return state.push(fromJS({
                 text: action.text,
@@ -46,12 +47,25 @@ function isAddingTodo(state = false, action) {
         case ADD_ITEM:
             return false;
         default:
-        return state;
+            return state;
     }
 }
+
+function isFetchingFromBackend(state = false, action) {
+    switch (action.type) {
+        case FETCH_ITEM_BEGIN:
+            return true;
+        case FETCH_ITEM_DONE:
+            return false;
+        default:
+            return state;
+    }
+}
+
 const todoApp = combineReducers({
         todoItems,
-        isAddingTodo
+        isAddingTodo,
+        isFetchingFromBackend
     }
 );
 

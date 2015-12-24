@@ -2,7 +2,7 @@ import React from 'react';
 import TodoItem from './TodoItem.jsx';
 import TodoFooter from './TodoFooter.jsx';
 import {connect} from 'react-redux';
-import {addItem, addItemAsync, selectItem,removeItem,intoEdit,editChange,exitEdit} from './actions';
+import {fetchItemBegin ,addItem, addItemAsync, selectItem,removeItem,intoEdit,editChange,exitEdit} from './actions';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
 class TodoApp extends React.Component {
@@ -21,7 +21,13 @@ class TodoApp extends React.Component {
                                }
                            }
                        }}/>
-
+                {
+                    (()=> {
+                        if (this.props.isFetchingFromBackend) {
+                            return <span>Fetching from backend...</span>;
+                        }
+                    })()
+                }
 
                 {
                     (()=> {
@@ -67,6 +73,10 @@ class TodoApp extends React.Component {
             </div>
         );
     }
+    componentWillMount() {
+        const {dispatch} = this.props;
+        dispatch(fetchItemBegin());
+    }
 }
 
 TodoApp.propTypes = {
@@ -82,7 +92,8 @@ TodoApp.propTypes = {
 function mapStateToProps(state) {
     return {
         todoItems: state.todoItems,
-        isAddingTodo: state.isAddingTodo
+        isAddingTodo: state.isAddingTodo,
+        isFetchingFromBackend: state.isFetchingFromBackend
     }
 }
 
