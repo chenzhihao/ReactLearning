@@ -1,5 +1,5 @@
 import {combineReducers} from 'redux';
-import {FETCH_ITEM_BEGIN, FETCH_ITEM_DONE, ADD_ITEM, SELECT_ITEM,REMOVE_ITEM,INTO_EDIT,EDIT_CHANGE,IS_ADDING,EXIT_EDIT} from './actions';
+import {FETCH_ITEM_BEGIN, FETCH_ITEM_DONE, ADD_ITEM, SELECT_ITEM,REMOVE_ITEM,INTO_EDIT,EDIT_CHANGE,ADD_ITEM_BEGIN,EXIT_EDIT, ADD_ITEM_DONE} from './actions';
 import Immutable from 'immutable';
 const {List, fromJS} = Immutable;
 
@@ -19,7 +19,9 @@ function todoItems(state = initialState, action) {
                 return item.set('checked', !item.get('checked'));
             });
         case REMOVE_ITEM:
-            return state.delete(action.index);
+            return state.filterNot((item)=> {
+                return item.get('id') === action.id;
+            });
         case EDIT_CHANGE:
             return state.update(action.index, (item)=> {
                 return item.set('text', action.text);
@@ -42,9 +44,9 @@ function todoItems(state = initialState, action) {
 
 function isAddingTodo(state = false, action) {
     switch (action.type) {
-        case IS_ADDING:
+        case ADD_ITEM_BEGIN:
             return true;
-        case ADD_ITEM:
+        case ADD_ITEM_DONE:
             return false;
         default:
             return state;
@@ -68,6 +70,5 @@ const todoApp = combineReducers({
         isFetchingFromBackend
     }
 );
-
 
 export default todoApp;

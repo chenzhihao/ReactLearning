@@ -29,18 +29,34 @@ Fetch.prototype.fetch = function (resourceEntry, options) {
         }).then((res)=> {
             this.token = res.token;
             return fetch(resourceEntry, _.merge(
-                {headers: {'x-access-token': res.token}}, options
+                {
+                    headers: {
+                        'x-access-token': res.token,
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json',
+                        'Access-Control-Allow-Origin': '*'
+                    }
+                }, options
             )).then((res)=> {
                 return res.json();
             });
         });
     } else {
         return fetch(resourceEntry, _.merge(
-            {headers: {'x-access-token': this.token}}, options
+            {
+                headers: {
+                    'x-access-token': this.token,
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*'
+                }
+            }, options
         )).then((res)=> {
             return res.json();
         });
     }
 };
 
-export default new Fetch();
+const FetchInstance = new Fetch();
+
+export default FetchInstance.fetch.bind(FetchInstance);

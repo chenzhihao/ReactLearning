@@ -2,7 +2,7 @@ import React from 'react';
 import TodoItem from './TodoItem.jsx';
 import TodoFooter from './TodoFooter.jsx';
 import {connect} from 'react-redux';
-import {fetchItemBegin ,addItem, addItemAsync, selectItem,removeItem,intoEdit,editChange,exitEdit} from './actions';
+import {fetchItemBegin, addItemBegin, selectItem,removeItemBegin, intoEdit,editChange,exitEdit} from './actions';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
 class TodoApp extends React.Component {
@@ -17,7 +17,7 @@ class TodoApp extends React.Component {
                                let input = document.querySelector('.new-todo').value;
                                document.querySelector('.new-todo').value = '';
                                if (input !== '') {
-                                   dispatch(addItemAsync(input));
+                                   dispatch(addItemBegin(input));
                                }
                            }
                        }}/>
@@ -48,7 +48,7 @@ class TodoApp extends React.Component {
                                          }
                                          onRemove={
                                              ()=> {
-                                                dispatch(removeItem(index));
+                                                dispatch(removeItemBegin(item.id));
                                             }
                                          }
                                          onEditInto={
