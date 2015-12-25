@@ -15,6 +15,14 @@ config = {
         libraryTarget: 'umd',
         library: ['LMUI']
     },
+    externals: {
+        "react": {
+            root: 'React',
+            commonjs2: 'react',
+            commonjs: 'react',
+            amd: 'react'
+        }
+    },
     eslint: {
         configFile: '.eslintrc'
     },
@@ -31,7 +39,7 @@ config = {
             {
                 test: /\.jsx?$/,
                 exclude: /(node_modules|bower_components)/,
-                loaders: ['react-hot', 'babel']
+                loaders: ['babel']
             },
             {
                 test: /\.css$/, // Only .css files
