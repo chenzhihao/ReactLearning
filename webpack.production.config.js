@@ -1,20 +1,31 @@
 var path = require('path');
 var webpack = require('webpack');
-var node_modules_dir = path.resolve(__dirname, 'node_modules');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 var minifiedDeps = {
     'jquery': 'bower_components/jquery/dist/jquery.min.js'
 };
 
-var config = {
-    entry: {
-        app: path.resolve(__dirname, 'app/main.js'),
-        vendors: ['react']
-    },
+
+config = {
+    entry: [
+        path.resolve(__dirname, 'app/main.js')],
     output: {
         path: path.resolve(__dirname, 'deploy'),
-        filename: 'bundle.js'
+        filename: 'bundle.js',
+        libraryTarget: 'umd',
+        library: ['LMUI']
+    },
+    externals: {
+        "react": {
+            root: 'React',
+            commonjs2: 'react',
+            commonjs: 'react',
+            amd: 'react'
+        }
+    },
+    eslint: {
+        configFile: '.eslintrc'
     },
     // resolve.alias and module.noParse will be injected as 'minifiedDeps'
     resolve: {
@@ -25,8 +36,8 @@ var config = {
         loaders: [
             {
                 test: /\.jsx?$/,
-                exclude: /(node_modules_dir|bower_components)/,
-                loader: 'babel'
+                exclude: /(node_modules|bower_components)/,
+                loaders: ['babel']
             },
             {
                 test: /\.css$/, // Only .css files
@@ -49,7 +60,7 @@ var config = {
     ]
 };
 
-for(var dep in minifiedDeps) {
+for (var dep in minifiedDeps) {
     var depPath = path.resolve(minifiedDeps[dep]);
     config.resolve.alias[dep] = depPath;
     config.module.noParse.push(depPath);
