@@ -7,17 +7,13 @@
 <body>
     <script src="http://localhost:8080/webpack-dev-server.js"></script>
     <div id="app"></div>
+    <script src="https://fb.me/react-0.14.3.js"></script>
+    <script src="https://fb.me/react-dom-0.14.3.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+    <script type="text/babel">
+        ReactDOM.render(
+            <LMUI.App></LMUI.App> , document.getElementById('app')
+        )
+    </script>
 <script src="bundle.js"></script></body>
-
-
-<script type="text/javascript" src="https://cdn.rawgit.com/blacktail/abc/master/demo/react-with-addons.js"></script>
-<script type="text/javascript" src="https://cdn.rawgit.com/blacktail/abc/master/demo/react-dom.js"></script>
-<script type="text/javascript"  src="https://cdn.rawgit.com/blacktail/abc/master/demo/babel.browser.min.js"></script>
-
-<div id="app-demo">app demo</div>
-
-
-<script type="text/babel">
-    ReactDOM.render(<LMUI.TodoReduxApp></LMUI.TodoReduxApp>, document.getElementById('app-demo'));
-</script>
 </html>
